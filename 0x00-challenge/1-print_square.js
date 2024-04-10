@@ -1,31 +1,24 @@
-###
-#
-#  Sort integer arguments (ascending) 
-#
-###
-
-result = []
-ARGV.each do |arg|
-    # skip if not integer
-    next if arg !~ /^-?[0-9]+$/
-
-    # convert to integer
-    i_arg = arg.to_i
+#!/usr/bin/node
+/*
+    Print a square with the character #
     
-    # insert result at the right position
-    is_inserted = false
-    i = 0
-    l = result.size
-    while !is_inserted && i < l do
-        if result[i] < i_arg
-            i += 1
-        else
-            result.insert(i - 1, i_arg)
-            is_inserted = true
-            break
-        end
-    end
-    result << i_arg if !is_inserted
-end
+    The size of the square must be the first argument 
+    of the program.
+*/
 
-puts result
+
+if (process.argv.length <= 2) {
+    process.stderr.write("Missing argument\n");
+    process.stderr.write("Usage: ./1-print_square.js <size>\n");
+    process.stderr.write("Example: ./1-print_square.js 8\n");
+    process.exit(1)
+}
+
+size = parseInt(process.argv[2], 10)
+
+for (let i = 0 ; i < size ; i ++) {
+    for (let j = 0 ; j < size ; j ++) {
+        process.stdout.write("#");
+    }
+    process.stdout.write("\n");
+}
